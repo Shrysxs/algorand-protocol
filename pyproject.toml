@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "ghostgas"
+version = "0.1.0"
+description = "Algorand smart contracts project using AlgoKit ecosystem"
+authors = []
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.12"
+algopy = "*"
+algokit-utils = "*"
+py-algorand-sdk = "*"
+algokit-client-generator = "*"
+
+[build-system]
+requires = ["poetry-core>=1.9.0"]
+build-backend = "poetry.core.masonry.api"

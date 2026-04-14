@@ -1,0 +1,785 @@
+{
+  "version": 3,
+  "sources": [
+    "attestation_contract.py"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAKQ;AAAgB;;AAAhB;AAFR;;AAAA;;;AAAA;;AAAA;AAAA;AAAA;;AAAA;AAAA;;;;;;;;;;;;AAAA;;;AAAA;;;;;;AAAA;;;;;;;;;AAKK;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAEU;;AAAc;AAAA;AAAA;AAAA;AAAd;AAAP;AACY;;;AAAZ;AAAA;AAAA;AAA+B;AAA/B;AAAA;AAHH;AAAA;AAKA;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAEU;;AAAc;AAAA;AAAA;AAAA;AAAd;AAAP;AACmB;;;AAAZ;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAgC;AAAhC;AAAP;AACA;;AAJH;;;;;;;;;;;;;;AAAA;AAAA;AAAA",
+  "op_pc_offset": 0,
+  "pc_events": {
+    "1": {
+      "subroutine": "algopy.arc4.ARC4Contract.approval_program",
+      "params": {},
+      "block": "main",
+      "stack_in": [],
+      "op": "intcblock 0 1 2"
+    },
+    "6": {
+      "op": "bytecblock \"verifier\" 0x70726f6f663a"
+    },
+    "24": {
+      "op": "txn ApplicationID",
+      "defined_out": [
+        "tmp%0#0"
+      ],
+      "stack_out": [
+        "tmp%0#0"
+      ]
+    },
+    "26": {
+      "op": "bnz main_after_if_else@2",
+      "stack_out": []
+    },
+    "29": {
+      "op": "bytec_0 // \"verifier\"",
+      "defined_out": [
+        "\"verifier\""
+      ],
+      "stack_out": [
+        "\"verifier\""
+      ]
+    },
+    "30": {
+      "op": "txn Sender",
+      "defined_out": [
+        "\"verifier\"",
+        "tmp%0#2"
+      ],
+      "stack_out": [
+        "\"verifier\"",
+        "tmp%0#2"
+      ]
+    },
+    "32": {
+      "op": "app_global_put",
+      "stack_out": []
+    },
+    "33": {
+      "block": "main_after_if_else@2",
+      "stack_in": [],
+      "op": "txn NumAppArgs",
+      "defined_out": [
+        "tmp%0#1"
+      ],
+      "stack_out": [
+        "tmp%0#1"
+      ]
+    },
+    "35": {
+      "op": "bz main___algopy_default_create@11",
+      "stack_out": []
+    },
+    "38": {
+      "op": "txn OnCompletion",
+      "defined_out": [
+        "tmp%2#0"
+      ],
+      "stack_out": [
+        "tmp%2#0"
+      ]
+    },
+    "40": {
+      "op": "!",
+      "defined_out": [
+        "tmp%3#0"
+      ],
+      "stack_out": [
+        "tmp%3#0"
+      ]
+    },
+    "41": {
+      "op": "assert",
+      "stack_out": []
+    },
+    "42": {
+      "op": "txn ApplicationID",
+      "defined_out": [
+        "tmp%4#0"
+      ],
+      "stack_out": [
+        "tmp%4#0"
+      ]
+    },
+    "44": {
+      "op": "assert",
+      "stack_out": []
+    },
+    "45": {
+      "op": "pushbytess 0x9380d04a 0x3ee05476 // method \"record_attestation(byte[])void\", method \"consume_attestation(byte[])uint64\"",
+      "defined_out": [
+        "Method(consume_attestation(byte[])uint64)",
+        "Method(record_attestation(byte[])void)"
+      ],
+      "stack_out": [
+        "Method(record_attestation(byte[])void)",
+        "Method(consume_attestation(byte[])uint64)"
+      ]
+    },
+    "57": {
+      "op": "txna ApplicationArgs 0",
+      "defined_out": [
+        "Method(consume_attestation(byte[])uint64)",
+        "Method(record_attestation(byte[])void)",
+        "tmp%6#0"
+      ],
+      "stack_out": [
+        "Method(record_attestation(byte[])void)",
+        "Method(consume_attestation(byte[])uint64)",
+        "tmp%6#0"
+      ]
+    },
+    "60": {
+      "op": "match record_attestation consume_attestation",
+      "stack_out": []
+    },
+    "66": {
+      "op": "err"
+    },
+    "67": {
+      "block": "main___algopy_default_create@11",
+      "stack_in": [],
+      "op": "txn OnCompletion",
+      "defined_out": [
+        "tmp%7#0"
+      ],
+      "stack_out": [
+        "tmp%7#0"
+      ]
+    },
+    "69": {
+      "op": "!",
+      "defined_out": [
+        "tmp%8#0"
+      ],
+      "stack_out": [
+        "tmp%8#0"
+      ]
+    },
+    "70": {
+      "op": "txn ApplicationID",
+      "defined_out": [
+        "tmp%8#0",
+        "tmp%9#0"
+      ],
+      "stack_out": [
+        "tmp%8#0",
+        "tmp%9#0"
+      ]
+    },
+    "72": {
+      "op": "!",
+      "defined_out": [
+        "tmp%10#0",
+        "tmp%8#0"
+      ],
+      "stack_out": [
+        "tmp%8#0",
+        "tmp%10#0"
+      ]
+    },
+    "73": {
+      "op": "&&",
+      "defined_out": [
+        "tmp%11#0"
+      ],
+      "stack_out": [
+        "tmp%11#0"
+      ]
+    },
+    "74": {
+      "op": "return",
+      "defined_out": [],
+      "stack_out": []
+    },
+    "75": {
+      "subroutine": "contracts.attestation_contract.AttestationContract.record_attestation[routing]",
+      "params": {},
+      "block": "record_attestation",
+      "stack_in": [],
+      "op": "txna ApplicationArgs 1",
+      "defined_out": [
+        "proof_id#0"
+      ],
+      "stack_out": [
+        "proof_id#0"
+      ]
+    },
+    "78": {
+      "op": "dup",
+      "defined_out": [
+        "proof_id#0",
+        "proof_id#0 (copy)"
+      ],
+      "stack_out": [
+        "proof_id#0",
+        "proof_id#0 (copy)"
+      ]
+    },
+    "79": {
+      "op": "intc_0 // 0",
+      "defined_out": [
+        "0",
+        "proof_id#0",
+        "proof_id#0 (copy)"
+      ],
+      "stack_out": [
+        "proof_id#0",
+        "proof_id#0 (copy)",
+        "0"
+      ]
+    },
+    "80": {
+      "error": "invalid array length header",
+      "op": "extract_uint16 // on error: invalid array length header",
+      "defined_out": [
+        "aggregate%array_length%0#0",
+        "proof_id#0"
+      ],
+      "stack_out": [
+        "proof_id#0",
+        "aggregate%array_length%0#0"
+      ]
+    },
+    "81": {
+      "op": "intc_2 // 2",
+      "defined_out": [
+        "2",
+        "aggregate%array_length%0#0",
+        "proof_id#0"
+      ],
+      "stack_out": [
+        "proof_id#0",
+        "aggregate%array_length%0#0",
+        "2"
+      ]
+    },
+    "82": {
+      "op": "+",
+      "defined_out": [
+        "add%0#0",
+        "proof_id#0"
+      ],
+      "stack_out": [
+        "proof_id#0",
+        "add%0#0"
+      ]
+    },
+    "83": {
+      "op": "dig 1",
+      "stack_out": [
+        "proof_id#0",
+        "add%0#0",
+        "proof_id#0 (copy)"
+      ]
+    },
+    "85": {
+      "op": "len",
+      "defined_out": [
+        "add%0#0",
+        "len%0#0",
+        "proof_id#0"
+      ],
+      "stack_out": [
+        "proof_id#0",
+        "add%0#0",
+        "len%0#0"
+      ]
+    },
+    "86": {
+      "op": "==",
+      "defined_out": [
+        "eq%0#0",
+        "proof_id#0"
+      ],
+      "stack_out": [
+        "proof_id#0",
+        "eq%0#0"
+      ]
+    },
+    "87": {
+      "error": "invalid number of bytes for arc4.dynamic_array<arc4.uint8>",
+      "op": "assert // invalid number of bytes for arc4.dynamic_array<arc4.uint8>",
+      "stack_out": [
+        "proof_id#0"
+      ]
+    },
+    "88": {
+      "op": "txn Sender",
+      "defined_out": [
+        "proof_id#0",
+        "tmp%0#1"
+      ],
+      "stack_out": [
+        "proof_id#0",
+        "tmp%0#1"
+      ]
+    },
+    "90": {
+      "op": "intc_0 // 0",
+      "stack_out": [
+        "proof_id#0",
+        "tmp%0#1",
+        "0"
+      ]
+    },
+    "91": {
+      "op": "bytec_0 // \"verifier\"",
+      "defined_out": [
+        "\"verifier\"",
+        "0",
+        "proof_id#0",
+        "tmp%0#1"
+      ],
+      "stack_out": [
+        "proof_id#0",
+        "tmp%0#1",
+        "0",
+        "\"verifier\""
+      ]
+    },
+    "92": {
+      "op": "app_global_get_ex",
+      "defined_out": [
+        "maybe_exists%0#0",
+        "maybe_value%0#0",
+        "proof_id#0",
+        "tmp%0#1"
+      ],
+      "stack_out": [
+        "proof_id#0",
+        "tmp%0#1",
+        "maybe_value%0#0",
+        "maybe_exists%0#0"
+      ]
+    },
+    "93": {
+      "error": "check self.verifier exists",
+      "op": "assert // check self.verifier exists",
+      "stack_out": [
+        "proof_id#0",
+        "tmp%0#1",
+        "maybe_value%0#0"
+      ]
+    },
+    "94": {
+      "op": "==",
+      "defined_out": [
+        "proof_id#0",
+        "tmp%1#0"
+      ],
+      "stack_out": [
+        "proof_id#0",
+        "tmp%1#0"
+      ]
+    },
+    "95": {
+      "op": "assert",
+      "stack_out": [
+        "proof_id#0"
+      ]
+    },
+    "96": {
+      "op": "extract 2 0",
+      "defined_out": [
+        "materialized_values%0#0"
+      ],
+      "stack_out": [
+        "materialized_values%0#0"
+      ]
+    },
+    "99": {
+      "op": "bytec_1 // 0x70726f6f663a",
+      "defined_out": [
+        "0x70726f6f663a",
+        "materialized_values%0#0"
+      ],
+      "stack_out": [
+        "materialized_values%0#0",
+        "0x70726f6f663a"
+      ]
+    },
+    "100": {
+      "op": "swap",
+      "stack_out": [
+        "0x70726f6f663a",
+        "materialized_values%0#0"
+      ]
+    },
+    "101": {
+      "op": "concat",
+      "defined_out": [
+        "box_prefixed_key%0#0"
+      ],
+      "stack_out": [
+        "box_prefixed_key%0#0"
+      ]
+    },
+    "102": {
+      "op": "intc_1 // 1",
+      "defined_out": [
+        "1",
+        "box_prefixed_key%0#0"
+      ],
+      "stack_out": [
+        "box_prefixed_key%0#0",
+        "1"
+      ]
+    },
+    "103": {
+      "op": "itob",
+      "defined_out": [
+        "box_prefixed_key%0#0",
+        "encoded_value%0#0"
+      ],
+      "stack_out": [
+        "box_prefixed_key%0#0",
+        "encoded_value%0#0"
+      ]
+    },
+    "104": {
+      "op": "box_put",
+      "stack_out": []
+    },
+    "105": {
+      "op": "intc_1 // 1",
+      "stack_out": [
+        "1"
+      ]
+    },
+    "106": {
+      "op": "return",
+      "stack_out": []
+    },
+    "107": {
+      "subroutine": "contracts.attestation_contract.AttestationContract.consume_attestation[routing]",
+      "params": {},
+      "block": "consume_attestation",
+      "stack_in": [],
+      "op": "txna ApplicationArgs 1",
+      "defined_out": [
+        "proof_id#0"
+      ],
+      "stack_out": [
+        "proof_id#0"
+      ]
+    },
+    "110": {
+      "op": "dup",
+      "defined_out": [
+        "proof_id#0",
+        "proof_id#0 (copy)"
+      ],
+      "stack_out": [
+        "proof_id#0",
+        "proof_id#0 (copy)"
+      ]
+    },
+    "111": {
+      "op": "intc_0 // 0",
+      "defined_out": [
+        "0",
+        "proof_id#0",
+        "proof_id#0 (copy)"
+      ],
+      "stack_out": [
+        "proof_id#0",
+        "proof_id#0 (copy)",
+        "0"
+      ]
+    },
+    "112": {
+      "error": "invalid array length header",
+      "op": "extract_uint16 // on error: invalid array length header",
+      "defined_out": [
+        "aggregate%array_length%0#0",
+        "proof_id#0"
+      ],
+      "stack_out": [
+        "proof_id#0",
+        "aggregate%array_length%0#0"
+      ]
+    },
+    "113": {
+      "op": "intc_2 // 2",
+      "defined_out": [
+        "2",
+        "aggregate%array_length%0#0",
+        "proof_id#0"
+      ],
+      "stack_out": [
+        "proof_id#0",
+        "aggregate%array_length%0#0",
+        "2"
+      ]
+    },
+    "114": {
+      "op": "+",
+      "defined_out": [
+        "add%0#0",
+        "proof_id#0"
+      ],
+      "stack_out": [
+        "proof_id#0",
+        "add%0#0"
+      ]
+    },
+    "115": {
+      "op": "dig 1",
+      "stack_out": [
+        "proof_id#0",
+        "add%0#0",
+        "proof_id#0 (copy)"
+      ]
+    },
+    "117": {
+      "op": "len",
+      "defined_out": [
+        "add%0#0",
+        "len%0#0",
+        "proof_id#0"
+      ],
+      "stack_out": [
+        "proof_id#0",
+        "add%0#0",
+        "len%0#0"
+      ]
+    },
+    "118": {
+      "op": "==",
+      "defined_out": [
+        "eq%0#0",
+        "proof_id#0"
+      ],
+      "stack_out": [
+        "proof_id#0",
+        "eq%0#0"
+      ]
+    },
+    "119": {
+      "error": "invalid number of bytes for arc4.dynamic_array<arc4.uint8>",
+      "op": "assert // invalid number of bytes for arc4.dynamic_array<arc4.uint8>",
+      "stack_out": [
+        "proof_id#0"
+      ]
+    },
+    "120": {
+      "op": "txn Sender",
+      "defined_out": [
+        "proof_id#0",
+        "tmp%0#1"
+      ],
+      "stack_out": [
+        "proof_id#0",
+        "tmp%0#1"
+      ]
+    },
+    "122": {
+      "op": "intc_0 // 0",
+      "stack_out": [
+        "proof_id#0",
+        "tmp%0#1",
+        "0"
+      ]
+    },
+    "123": {
+      "op": "bytec_0 // \"verifier\"",
+      "defined_out": [
+        "\"verifier\"",
+        "0",
+        "proof_id#0",
+        "tmp%0#1"
+      ],
+      "stack_out": [
+        "proof_id#0",
+        "tmp%0#1",
+        "0",
+        "\"verifier\""
+      ]
+    },
+    "124": {
+      "op": "app_global_get_ex",
+      "defined_out": [
+        "maybe_exists%0#0",
+        "maybe_value%0#0",
+        "proof_id#0",
+        "tmp%0#1"
+      ],
+      "stack_out": [
+        "proof_id#0",
+        "tmp%0#1",
+        "maybe_value%0#0",
+        "maybe_exists%0#0"
+      ]
+    },
+    "125": {
+      "error": "check self.verifier exists",
+      "op": "assert // check self.verifier exists",
+      "stack_out": [
+        "proof_id#0",
+        "tmp%0#1",
+        "maybe_value%0#0"
+      ]
+    },
+    "126": {
+      "op": "==",
+      "defined_out": [
+        "proof_id#0",
+        "tmp%1#1"
+      ],
+      "stack_out": [
+        "proof_id#0",
+        "tmp%1#1"
+      ]
+    },
+    "127": {
+      "op": "assert",
+      "stack_out": [
+        "proof_id#0"
+      ]
+    },
+    "128": {
+      "op": "extract 2 0",
+      "defined_out": [
+        "materialized_values%0#0"
+      ],
+      "stack_out": [
+        "materialized_values%0#0"
+      ]
+    },
+    "131": {
+      "op": "bytec_1 // 0x70726f6f663a",
+      "defined_out": [
+        "0x70726f6f663a",
+        "materialized_values%0#0"
+      ],
+      "stack_out": [
+        "materialized_values%0#0",
+        "0x70726f6f663a"
+      ]
+    },
+    "132": {
+      "op": "swap",
+      "stack_out": [
+        "0x70726f6f663a",
+        "materialized_values%0#0"
+      ]
+    },
+    "133": {
+      "op": "concat",
+      "defined_out": [
+        "box_prefixed_key%0#0"
+      ],
+      "stack_out": [
+        "box_prefixed_key%0#0"
+      ]
+    },
+    "134": {
+      "op": "dup",
+      "defined_out": [
+        "box_prefixed_key%0#0",
+        "box_prefixed_key%0#0 (copy)"
+      ],
+      "stack_out": [
+        "box_prefixed_key%0#0",
+        "box_prefixed_key%0#0 (copy)"
+      ]
+    },
+    "135": {
+      "op": "box_get",
+      "defined_out": [
+        "aggregate%box_get%0#0",
+        "aggregate%box_get%1#0",
+        "box_prefixed_key%0#0"
+      ],
+      "stack_out": [
+        "box_prefixed_key%0#0",
+        "aggregate%box_get%0#0",
+        "aggregate%box_get%1#0"
+      ]
+    },
+    "136": {
+      "error": "check self.proofs entry exists",
+      "op": "assert // check self.proofs entry exists",
+      "stack_out": [
+        "box_prefixed_key%0#0",
+        "aggregate%box_get%0#0"
+      ]
+    },
+    "137": {
+      "op": "btoi",
+      "defined_out": [
+        "box_prefixed_key%0#0",
+        "maybe_value_converted%0#0"
+      ],
+      "stack_out": [
+        "box_prefixed_key%0#0",
+        "maybe_value_converted%0#0"
+      ]
+    },
+    "138": {
+      "op": "intc_1 // 1",
+      "defined_out": [
+        "1",
+        "box_prefixed_key%0#0",
+        "maybe_value_converted%0#0"
+      ],
+      "stack_out": [
+        "box_prefixed_key%0#0",
+        "maybe_value_converted%0#0",
+        "1"
+      ]
+    },
+    "139": {
+      "op": "==",
+      "defined_out": [
+        "box_prefixed_key%0#0",
+        "tmp%2#1"
+      ],
+      "stack_out": [
+        "box_prefixed_key%0#0",
+        "tmp%2#1"
+      ]
+    },
+    "140": {
+      "op": "assert",
+      "stack_out": [
+        "box_prefixed_key%0#0"
+      ]
+    },
+    "141": {
+      "op": "box_del",
+      "defined_out": [
+        "{box_del}"
+      ],
+      "stack_out": [
+        "{box_del}"
+      ]
+    },
+    "142": {
+      "op": "pop",
+      "stack_out": []
+    },
+    "143": {
+      "op": "pushbytes 0x151f7c750000000000000001",
+      "defined_out": [
+        "0x151f7c750000000000000001"
+      ],
+      "stack_out": [
+        "0x151f7c750000000000000001"
+      ]
+    },
+    "157": {
+      "op": "log",
+      "stack_out": []
+    },
+    "158": {
+      "op": "intc_1 // 1",
+      "stack_out": [
+        "1"
+      ]
+    },
+    "159": {
+      "op": "return",
+      "stack_out": []
+    }
+  }
+}
