@@ -1,7 +1,7 @@
 from algopy import ARC4Contract, Txn, UInt64, arc4
 
 
-class CampaignContract(ARC4Contract):
+class CampaignV2Contract(ARC4Contract):
     def __init__(self) -> None:
         self.advertiser = Txn.sender
         self.budget = UInt64(0)

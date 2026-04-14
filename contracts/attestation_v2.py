@@ -1,7 +1,7 @@
 from algopy import ARC4Contract, BoxMap, Bytes, Txn, UInt64, arc4
 
 
-class AttestationContract(ARC4Contract):
+class AttestationV2Contract(ARC4Contract):
     def __init__(self) -> None:
         self.verifier = Txn.sender
         self.proofs = BoxMap(Bytes, UInt64, key_prefix=b"proof:")

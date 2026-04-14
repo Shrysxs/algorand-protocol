@@ -1,7 +1,7 @@
 from algopy import ARC4Contract, Txn, UInt64, arc4, itxn
 
 
-class PaymasterContract(ARC4Contract):
+class PaymasterV2Contract(ARC4Contract):
     def __init__(self) -> None:
         self.admin = Txn.sender
         self.balance = UInt64(0)

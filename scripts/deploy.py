@@ -91,10 +91,10 @@ def main() -> None:
 
     artifact_dir = ROOT_DIR / "artifacts" / "contracts"
     contracts = {
-        "CAMPAIGN_APP_ID": "CampaignContract",
-        "SETTLEMENT_APP_ID": "SettlementContract",
-        "PAYMASTER_APP_ID": "PaymasterContract",
-        "ATTESTATION_APP_ID": "AttestationContract",
+        "V2_CAMPAIGN_APP_ID": "CampaignV2Contract",
+        "V2_SETTLEMENT_APP_ID": "SettlementV2Contract",
+        "V2_PAYMASTER_APP_ID": "PaymasterV2Contract",
+        "V2_ATTESTATION_APP_ID": "AttestationV2Contract",
     }
 
     results: dict[str, int] = {}
@@ -108,10 +108,10 @@ def main() -> None:
         )
         results[env_key] = app_id
 
-    print(f"CAMPAIGN_APP_ID={results['CAMPAIGN_APP_ID']}")
-    print(f"SETTLEMENT_APP_ID={results['SETTLEMENT_APP_ID']}")
-    print(f"PAYMASTER_APP_ID={results['PAYMASTER_APP_ID']}")
-    print(f"ATTESTATION_APP_ID={results['ATTESTATION_APP_ID']}")
+    print(f"V2_CAMPAIGN_APP_ID={results['V2_CAMPAIGN_APP_ID']}")
+    print(f"V2_SETTLEMENT_APP_ID={results['V2_SETTLEMENT_APP_ID']}")
+    print(f"V2_PAYMASTER_APP_ID={results['V2_PAYMASTER_APP_ID']}")
+    print(f"V2_ATTESTATION_APP_ID={results['V2_ATTESTATION_APP_ID']}")
 
 
 if __name__ == "__main__":

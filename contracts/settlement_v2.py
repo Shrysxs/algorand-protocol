@@ -1,10 +1,10 @@
 from algopy import ARC4Contract, Application, Txn, UInt64, arc4, itxn
-from contracts.attestation_contract import AttestationContract
-from contracts.campaign_contract import CampaignContract
-from contracts.paymaster_contract import PaymasterContract
+from contracts.attestation_v2 import AttestationV2Contract
+from contracts.campaign_v2 import CampaignV2Contract
+from contracts.paymaster_v2 import PaymasterV2Contract
 
 
-class SettlementContract(ARC4Contract):
+class SettlementV2Contract(ARC4Contract):
     def __init__(self) -> None:
         self.admin = Txn.sender
         self.publisher_bps = UInt64(8000)
@@ -62,7 +62,7 @@ class SettlementContract(ARC4Contract):
 
         # 1) Verify and consume proof on attestation contract.
         consumed, consumed_itxn = arc4.abi_call(
-            AttestationContract.validate_and_consume,
+            AttestationV2Contract.validate_and_consume,
             proof_id,
             app_id=attestation_app,
         )
@@ -70,7 +70,7 @@ class SettlementContract(ARC4Contract):
 
         # 2) Deduct one impression from campaign contract.
         deducted_cost, deduct_itxn = arc4.abi_call(
-            CampaignContract.deduct_for_impression,
+            CampaignV2Contract.deduct_for_impression,
             app_id=campaign_app,
         )
         assert deducted_cost.native > UInt64(0)
@@ -83,12 +83,12 @@ class SettlementContract(ARC4Contract):
 
         # 4) Fund paymaster and grant sponsorship.
         receive_itxn = arc4.abi_call(
-            PaymasterContract.receive_funds,
+            PaymasterV2Contract.receive_funds,
             amount,
             app_id=paymaster_app,
         )
         sponsorship_itxn = arc4.abi_call(
-            PaymasterContract.grant_sponsorship,
+            PaymasterV2Contract.grant_sponsorship,
             user,
             app_id=paymaster_app,
         )

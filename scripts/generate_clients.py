@@ -10,10 +10,10 @@ CONTRACT_ARTIFACTS_DIR = ROOT_DIR / "artifacts" / "contracts"
 OUTPUT_DIR = ROOT_DIR / "artifacts"
 
 TARGET_OUTPUTS = {
-    "CampaignContract.arc56.json": "campaign_client.py",
-    "AttestationContract.arc56.json": "attestation_client.py",
-    "SettlementContract.arc56.json": "settlement_client.py",
-    "PaymasterContract.arc56.json": "paymaster_client.py",
+    "CampaignV2Contract.arc56.json": "campaign_v2_client.py",
+    "AttestationV2Contract.arc56.json": "attestation_v2_client.py",
+    "SettlementV2Contract.arc56.json": "settlement_v2_client.py",
+    "PaymasterV2Contract.arc56.json": "paymaster_v2_client.py",
 }
 
 
