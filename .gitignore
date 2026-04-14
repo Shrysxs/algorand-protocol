@@ -16,6 +16,12 @@ env/
 .pytest_cache/
 .ruff_cache/
 
+# Prevent compiled outputs from polluting source folders
+contracts/*.teal
+contracts/*.arc56.json
+contracts/*.puya.map
+contracts/artifacts/
+
 # IDE/editor files
 .idea/
 .vscode/

@@ -6,7 +6,7 @@ from pathlib import Path
 
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
-CONTRACTS_DIR = ROOT_DIR / "contracts"
+CONTRACT_ARTIFACTS_DIR = ROOT_DIR / "artifacts" / "contracts"
 OUTPUT_DIR = ROOT_DIR / "artifacts"
 
 TARGET_OUTPUTS = {
@@ -18,11 +18,11 @@ TARGET_OUTPUTS = {
 
 
 def find_specs() -> dict[str, Path]:
-    specs = {path.name: path for path in CONTRACTS_DIR.rglob("*.arc56.json")}
+    specs = {path.name: path for path in CONTRACT_ARTIFACTS_DIR.rglob("*.arc56.json")}
     missing = [name for name in TARGET_OUTPUTS if name not in specs]
     if missing:
         missing_str = ", ".join(missing)
-        raise FileNotFoundError(f"Missing ARC56 specs under contracts/: {missing_str}")
+        raise FileNotFoundError(f"Missing ARC56 specs under artifacts/contracts/: {missing_str}")
     return specs
 
 

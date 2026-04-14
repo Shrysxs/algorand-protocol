@@ -89,7 +89,7 @@ def main() -> None:
     )
     sender = account.address_from_private_key(private_key)
 
-    artifact_dir = ROOT_DIR / "contracts" / "artifacts"
+    artifact_dir = ROOT_DIR / "artifacts" / "contracts"
     contracts = {
         "CAMPAIGN_APP_ID": "CampaignContract",
         "SETTLEMENT_APP_ID": "SettlementContract",

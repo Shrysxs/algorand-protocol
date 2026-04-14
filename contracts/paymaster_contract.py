@@ -12,9 +12,20 @@ class PaymasterContract(ARC4Contract):
         self.balance = self.balance + amount.native
 
     @arc4.abimethod
+    def receive_funds(self, amount: arc4.UInt64) -> None:
+        self.balance = self.balance + amount.native
+
+    @arc4.abimethod
     def sponsor(self, user: arc4.Address, amount: arc4.UInt64) -> None:
         assert Txn.sender == self.admin
         assert self.balance >= amount.native
 
         self.balance = self.balance - amount.native
         itxn.Payment(receiver=user.native, amount=amount.native).submit()
+
+    @arc4.abimethod
+    def grant_sponsorship(self, user: arc4.Address) -> None:
+        grant_amount = UInt64(1)
+        assert self.balance >= grant_amount
+        self.balance = self.balance - grant_amount
+        itxn.Payment(receiver=user.native, amount=grant_amount).submit()

@@ -17,3 +17,9 @@ class AttestationContract(ARC4Contract):
         assert self.proofs[proof_id.native] == UInt64(1)
         del self.proofs[proof_id.native]
         return arc4.UInt64(1)
+
+    @arc4.abimethod
+    def validate_and_consume(self, proof_id: arc4.DynamicBytes) -> arc4.UInt64:
+        assert self.proofs[proof_id.native] == UInt64(1)
+        del self.proofs[proof_id.native]
+        return arc4.UInt64(1)

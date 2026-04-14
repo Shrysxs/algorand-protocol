@@ -20,5 +20,11 @@ class CampaignContract(ARC4Contract):
         return arc4.UInt64(self.cost_per_impression)
 
     @arc4.abimethod
+    def deduct_for_impression(self) -> arc4.UInt64:
+        assert self.budget >= self.cost_per_impression
+        self.budget = self.budget - self.cost_per_impression
+        return arc4.UInt64(self.cost_per_impression)
+
+    @arc4.abimethod
     def get_budget(self) -> arc4.UInt64:
         return arc4.UInt64(self.budget)

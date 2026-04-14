@@ -3,7 +3,7 @@
 
 // algopy.arc4.ARC4Contract.approval_program() -> uint64:
 main:
-    intcblock 0 1 8
+    intcblock 0 1 8 32
     bytecblock "balance" "admin"
     txn ApplicationID
     bnz main_after_if_else@2
@@ -22,18 +22,18 @@ main_after_if_else@2:
     // contracts/paymaster_contract.py:4
     // class PaymasterContract(ARC4Contract):
     txn NumAppArgs
-    bz main___algopy_default_create@11
+    bz main___algopy_default_create@13
     txn OnCompletion
     !
     assert
     txn ApplicationID
     assert
-    pushbytess 0x6fa6214c 0xc01f4718 // method "fund(uint64)void", method "sponsor(address,uint64)void"
+    pushbytess 0x6fa6214c 0x3166eda3 0xc01f4718 0xc1e5f3af // method "fund(uint64)void", method "receive_funds(uint64)void", method "sponsor(address,uint64)void", method "grant_sponsorship(address)void"
     txna ApplicationArgs 0
-    match fund sponsor
+    match fund receive_funds sponsor grant_sponsorship
     err
 
-main___algopy_default_create@11:
+main___algopy_default_create@13:
     txn OnCompletion
     !
     txn ApplicationID
@@ -79,14 +79,42 @@ fund:
     return
 
 
-// contracts.paymaster_contract.PaymasterContract.sponsor[routing]() -> void:
-sponsor:
+// contracts.paymaster_contract.PaymasterContract.receive_funds[routing]() -> void:
+receive_funds:
     // contracts/paymaster_contract.py:14
     // @arc4.abimethod
     txna ApplicationArgs 1
     dup
     len
-    pushint 32
+    intc_2 // 8
+    ==
+    assert // invalid number of bytes for arc4.uint64
+    // contracts/paymaster_contract.py:16
+    // self.balance = self.balance + amount.native
+    intc_0 // 0
+    bytec_0 // "balance"
+    app_global_get_ex
+    assert // check self.balance exists
+    swap
+    btoi
+    +
+    bytec_0 // "balance"
+    swap
+    app_global_put
+    // contracts/paymaster_contract.py:14
+    // @arc4.abimethod
+    intc_1 // 1
+    return
+
+
+// contracts.paymaster_contract.PaymasterContract.sponsor[routing]() -> void:
+sponsor:
+    // contracts/paymaster_contract.py:18
+    // @arc4.abimethod
+    txna ApplicationArgs 1
+    dup
+    len
+    intc_3 // 32
     ==
     assert // invalid number of bytes for arc4.static_array<arc4.uint8, 32>
     txna ApplicationArgs 2
@@ -95,7 +123,7 @@ sponsor:
     intc_2 // 8
     ==
     assert // invalid number of bytes for arc4.uint64
-    // contracts/paymaster_contract.py:16
+    // contracts/paymaster_contract.py:20
     // assert Txn.sender == self.admin
     txn Sender
     intc_0 // 0
@@ -104,7 +132,7 @@ sponsor:
     assert // check self.admin exists
     ==
     assert
-    // contracts/paymaster_contract.py:17
+    // contracts/paymaster_contract.py:21
     // assert self.balance >= amount.native
     intc_0 // 0
     bytec_0 // "balance"
@@ -115,7 +143,7 @@ sponsor:
     dup2
     >=
     assert
-    // contracts/paymaster_contract.py:19
+    // contracts/paymaster_contract.py:23
     // self.balance = self.balance - amount.native
     swap
     dig 1
@@ -123,7 +151,7 @@ sponsor:
     bytec_0 // "balance"
     swap
     app_global_put
-    // contracts/paymaster_contract.py:20
+    // contracts/paymaster_contract.py:24
     // itxn.Payment(receiver=user.native, amount=amount.native).submit()
     itxn_begin
     itxn_field Amount
@@ -133,7 +161,55 @@ sponsor:
     intc_0 // 0
     itxn_field Fee
     itxn_submit
-    // contracts/paymaster_contract.py:14
+    // contracts/paymaster_contract.py:18
+    // @arc4.abimethod
+    intc_1 // 1
+    return
+
+
+// contracts.paymaster_contract.PaymasterContract.grant_sponsorship[routing]() -> void:
+grant_sponsorship:
+    // contracts/paymaster_contract.py:26
+    // @arc4.abimethod
+    txna ApplicationArgs 1
+    dup
+    len
+    intc_3 // 32
+    ==
+    assert // invalid number of bytes for arc4.static_array<arc4.uint8, 32>
+    // contracts/paymaster_contract.py:29
+    // assert self.balance >= grant_amount
+    intc_0 // 0
+    bytec_0 // "balance"
+    app_global_get_ex
+    assert // check self.balance exists
+    dup
+    assert
+    // contracts/paymaster_contract.py:28
+    // grant_amount = UInt64(1)
+    intc_1 // 1
+    // contracts/paymaster_contract.py:30
+    // self.balance = self.balance - grant_amount
+    -
+    bytec_0 // "balance"
+    swap
+    app_global_put
+    // contracts/paymaster_contract.py:31
+    // itxn.Payment(receiver=user.native, amount=grant_amount).submit()
+    itxn_begin
+    // contracts/paymaster_contract.py:28
+    // grant_amount = UInt64(1)
+    intc_1 // 1
+    itxn_field Amount
+    itxn_field Receiver
+    // contracts/paymaster_contract.py:31
+    // itxn.Payment(receiver=user.native, amount=grant_amount).submit()
+    intc_1 // pay
+    itxn_field TypeEnum
+    intc_0 // 0
+    itxn_field Fee
+    itxn_submit
+    // contracts/paymaster_contract.py:26
     // @arc4.abimethod
     intc_1 // 1
     return

@@ -4,12 +4,12 @@
 // algopy.arc4.ARC4Contract.approval_program() -> uint64:
 main:
     intcblock 0 1
-    bytecblock "budget" "advertiser" "cost_per_impression" 0x151f7c75
+    bytecblock "budget" "cost_per_impression" "advertiser" 0x151f7c75
     txn ApplicationID
     bnz main_after_if_else@2
     // contracts/campaign_contract.py:6
     // self.advertiser = Txn.sender
-    bytec_1 // "advertiser"
+    bytec_2 // "advertiser"
     txn Sender
     app_global_put
     // contracts/campaign_contract.py:7
@@ -19,7 +19,7 @@ main:
     app_global_put
     // contracts/campaign_contract.py:8
     // self.cost_per_impression = UInt64(1)
-    bytec_2 // "cost_per_impression"
+    bytec_1 // "cost_per_impression"
     intc_1 // 1
     app_global_put
 
@@ -27,18 +27,18 @@ main_after_if_else@2:
     // contracts/campaign_contract.py:4
     // class CampaignContract(ARC4Contract):
     txn NumAppArgs
-    bz main___algopy_default_create@12
+    bz main___algopy_default_create@13
     txn OnCompletion
     !
     assert
     txn ApplicationID
     assert
-    pushbytess 0x65d59941 0x7c4ddf1f 0x42b69c16 // method "deposit_budget(uint64)void", method "deduct()uint64", method "get_budget()uint64"
+    pushbytess 0x65d59941 0x7c4ddf1f 0xc06b2cb7 0x42b69c16 // method "deposit_budget(uint64)void", method "deduct()uint64", method "deduct_for_impression()uint64", method "get_budget()uint64"
     txna ApplicationArgs 0
-    match deposit_budget deduct get_budget
+    match deposit_budget deduct deduct_for_impression get_budget
     err
 
-main___algopy_default_create@12:
+main___algopy_default_create@13:
     txn OnCompletion
     !
     txn ApplicationID
@@ -61,7 +61,7 @@ deposit_budget:
     // assert Txn.sender == self.advertiser
     txn Sender
     intc_0 // 0
-    bytec_1 // "advertiser"
+    bytec_2 // "advertiser"
     app_global_get_ex
     assert // check self.advertiser exists
     ==
@@ -90,7 +90,7 @@ deduct:
     // assert Txn.sender == self.advertiser
     txn Sender
     intc_0 // 0
-    bytec_1 // "advertiser"
+    bytec_2 // "advertiser"
     app_global_get_ex
     assert // check self.advertiser exists
     ==
@@ -102,7 +102,7 @@ deduct:
     app_global_get_ex
     assert // check self.budget exists
     intc_0 // 0
-    bytec_2 // "cost_per_impression"
+    bytec_1 // "cost_per_impression"
     app_global_get_ex
     assert // check self.cost_per_impression exists
     dup2
@@ -117,7 +117,7 @@ deduct:
     // contracts/campaign_contract.py:20
     // return arc4.UInt64(self.cost_per_impression)
     intc_0 // 0
-    bytec_2 // "cost_per_impression"
+    bytec_1 // "cost_per_impression"
     app_global_get_ex
     assert // check self.cost_per_impression exists
     itob
@@ -131,16 +131,54 @@ deduct:
     return
 
 
+// contracts.campaign_contract.CampaignContract.deduct_for_impression[routing]() -> void:
+deduct_for_impression:
+    // contracts/campaign_contract.py:24
+    // assert self.budget >= self.cost_per_impression
+    intc_0 // 0
+    bytec_0 // "budget"
+    app_global_get_ex
+    assert // check self.budget exists
+    intc_0 // 0
+    bytec_1 // "cost_per_impression"
+    app_global_get_ex
+    assert // check self.cost_per_impression exists
+    dup2
+    >=
+    assert
+    // contracts/campaign_contract.py:25
+    // self.budget = self.budget - self.cost_per_impression
+    -
+    bytec_0 // "budget"
+    swap
+    app_global_put
+    // contracts/campaign_contract.py:26
+    // return arc4.UInt64(self.cost_per_impression)
+    intc_0 // 0
+    bytec_1 // "cost_per_impression"
+    app_global_get_ex
+    assert // check self.cost_per_impression exists
+    itob
+    // contracts/campaign_contract.py:22
+    // @arc4.abimethod
+    bytec_3 // 0x151f7c75
+    swap
+    concat
+    log
+    intc_1 // 1
+    return
+
+
 // contracts.campaign_contract.CampaignContract.get_budget[routing]() -> void:
 get_budget:
-    // contracts/campaign_contract.py:24
+    // contracts/campaign_contract.py:30
     // return arc4.UInt64(self.budget)
     intc_0 // 0
     bytec_0 // "budget"
     app_global_get_ex
     assert // check self.budget exists
     itob
-    // contracts/campaign_contract.py:22
+    // contracts/campaign_contract.py:28
     // @arc4.abimethod
     bytec_3 // 0x151f7c75
     swap
