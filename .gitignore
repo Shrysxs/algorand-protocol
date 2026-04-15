@@ -10,6 +10,13 @@ env/
 
 # Local environment and secrets
 .env
+.env.local
+.env*.local
+
+# Node
+node_modules/
+.next/
+dist/
 
 # Build and tooling cache
 .mypy_cache/
