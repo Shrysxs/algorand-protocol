@@ -233,6 +233,11 @@ class ImpressionCompleteResponse(BaseModel):
 # Routes
 # ---------------------------------------------------------------------------
 
+@app.get("/")
+async def root():
+    return {"status": "ok", "agent": "ghostgas-settlement"}
+
+
 @app.get("/health")
 async def health():
     return {"status": "ok", "agent": "ghostgas-settlement"}
