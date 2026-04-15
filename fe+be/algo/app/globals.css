@@ -1,8 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f8f8fa;
-  --foreground: #1a1a2e;
+  --background: #ffffff;
+  --foreground: #111111;
+  --muted: #71717a;
+  --border: #e4e4e7;
+  --accent: #18181b;
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --danger: #ef4444;
 }
 
 @theme inline {
@@ -17,10 +23,9 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-* {
-  scrollbar-width: thin;
-  scrollbar-color: #d1d5db transparent;
+::selection {
+  background: #18181b;
+  color: #fff;
 }
