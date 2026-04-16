@@ -15,45 +15,48 @@ export function Navbar() {
   ];
 
   return (
-    <nav className="border-b border-zinc-100 px-5 lg:px-8 h-14 flex items-center justify-between bg-white sticky top-0 z-40">
-      <div className="flex items-center gap-6">
-        <Link href="/" className="flex items-center gap-2">
-          <span className="text-sm font-bold tracking-tight">ghostgas</span>
-        </Link>
+    <nav className="px-4 lg:px-6 py-3 flex items-center justify-between">
+      {/* Logo */}
+      <Link href="/" className="text-sm font-semibold tracking-tight text-white pl-2">
+        ghostgas
+      </Link>
 
-        <div className="hidden sm:flex items-center gap-1">
-          {links.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              className={`text-[13px] px-3 py-1.5 rounded-md transition ${
-                pathname === l.href
-                  ? "text-zinc-900 bg-zinc-100 font-medium"
-                  : "text-zinc-400 hover:text-zinc-600"
-              }`}
-            >
-              {l.label}
-            </Link>
-          ))}
-        </div>
+      {/* Center nav — pill shaped */}
+      <div className="hidden sm:flex items-center bg-[#141414] border border-white/[0.06] rounded-full px-1 py-1">
+        {links.map((l) => (
+          <Link
+            key={l.href}
+            href={l.href}
+            className={`text-[13px] px-4 py-1.5 rounded-full transition-all ${
+              pathname === l.href
+                ? "text-white bg-white/[0.08]"
+                : "text-white/35 hover:text-white/60"
+            }`}
+          >
+            {l.label}
+          </Link>
+        ))}
       </div>
 
-      {address ? (
-        <button
-          onClick={disconnect}
-          className="text-[13px] font-mono px-3 py-1.5 rounded-md border border-zinc-200 text-zinc-600 hover:bg-zinc-50 transition"
-        >
-          {address.slice(0, 6)}...{address.slice(-4)}
-        </button>
-      ) : (
-        <button
-          onClick={connect}
-          disabled={connecting}
-          className="text-[13px] px-4 py-1.5 rounded-md bg-zinc-900 text-white font-medium hover:bg-zinc-800 transition disabled:opacity-50"
-        >
-          {connecting ? "Connecting..." : "Connect"}
-        </button>
-      )}
+      {/* Right — pill buttons */}
+      <div className="flex items-center gap-2">
+        {address ? (
+          <button
+            onClick={disconnect}
+            className="text-[13px] font-mono px-4 py-1.5 rounded-full bg-[#141414] border border-white/[0.06] text-white/50 hover:text-white/80 transition"
+          >
+            {address.slice(0, 6)}...{address.slice(-4)}
+          </button>
+        ) : (
+          <button
+            onClick={connect}
+            disabled={connecting}
+            className="text-[13px] px-5 py-1.5 rounded-full bg-white text-black font-medium hover:bg-white/90 transition disabled:opacity-50"
+          >
+            {connecting ? "Connecting..." : "Launch App"}
+          </button>
+        )}
+      </div>
     </nav>
   );
 }
