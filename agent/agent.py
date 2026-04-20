@@ -238,6 +238,11 @@ async def health():
     return {"status": "ok", "agent": "ghostgas-settlement"}
 
 
+@app.get("/")
+async def root():
+    return {"status": "ok", "service": "ghostgas-settlement-agent"}
+
+
 @app.post("/impression/complete", response_model=ImpressionCompleteResponse)
 async def complete_impression(body: ImpressionCompleteRequest):
     # 1) Validate watch duration
