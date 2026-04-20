@@ -2,3 +2,4 @@ fastapi>=0.110.0
 uvicorn>=0.29.0
 py-algorand-sdk>=2.6.0
 supabase>=2.0.0
+certifi>=2024.0.0
